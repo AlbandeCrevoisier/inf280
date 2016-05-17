@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#define RANGE 1000001
+#define RANGE 1000002
 using namespace std;
 
 int
