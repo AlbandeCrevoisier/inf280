@@ -17,6 +17,8 @@ main(void)
         if (!t[i])
             for (int j = (2 * i); j < RANGE; j += i)
                 t[j] = true;
+    t[0] = true;
+    t[1] = true;
 
     for (int i = 0; i < RANGE; i++)
         if (!t[i])
@@ -28,9 +30,7 @@ main(void)
             if ((n - i) < i)
                 break;
             if (!t[n - i]) {
-                cout << to_string(n) << " = ";
-                cout << to_string(i) << " + ";
-                cout << to_string(n - i) << endl;
+                cout << n << " = " << i << " + " << (n - i) << endl;
                 break;
             }
         }
