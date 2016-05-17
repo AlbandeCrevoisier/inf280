@@ -1,7 +1,6 @@
 /* Goldbach's conjecture */
 #include <iostream>
 #include <vector>
-#include <cmath>
 #include <string>
 #define RANGE 1000000
 using namespace std;
@@ -9,38 +8,38 @@ using namespace std;
 int
 main(void)
 {
-    bool t[RANGE] = {true};
+    bool t[RANGE] = {false};
     vector<uint32_t> p;
     uint32_t n;
     string s;
 
-    cout << "start\n";
     /* Sive of Eratosthenes */
-    for (int i = 2; i < sqrt(RANGE); i++) {
-        if (t[i]) {
-            cout << i;
+    for (int i = 2; i*i <= RANGE; i++) {
+        if (!t[i]) {
             p.push_back(i);
-            for (int j = 2; j < (RANGE/i); j++)
-                t[i * j] = false;
+            for (int j = 2 * i; j < RANGE; j += i)
+                t[j] = true;
         }
     }
-    cout << "done\n";
 
     cin >> n;
-    
-    do {
-        for (auto& i : p)
-            if (t[n - i]) {
-                cout << i;
-                s += n;
+   
+   while (n) {
+        for (auto& i : p) {
+            if ((n - i) < 0)
+                break;
+            if (!t[n - i]) {
+                s += to_string(n);
                 s += " = ";
-                s += i;
+                s += to_string(i);
                 s += " + ";
-                s += (n - i);
+                s += to_string(n - i);
                 s += "\n";
+                break;
             }
+        }
         cin >> n;
-    } while (n);
+    }
 
     cout << s;
     return 0;
