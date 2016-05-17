@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#define RANGE 1000000
+#define RANGE 1000001
 using namespace std;
 
 int
@@ -14,11 +14,13 @@ main(void)
 
     /* Sive of Eratosthenes */
     for (int i = 2; i*i <= RANGE; i++)
-        if (!t[i]) {
-            p.push_back(i);
-            for (int j = 2 * i; j < RANGE; j += i)
+        if (!t[i])
+            for (int j = (2 * i); j < RANGE; j += i)
                 t[j] = true;
-        }
+
+    for (int i = 0; i < RANGE; i++)
+        if (!t[i])
+            p.push_back(i);
 
     cin >> n;
    while (n) {
