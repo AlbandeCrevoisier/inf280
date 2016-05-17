@@ -25,7 +25,7 @@ main(void)
             p.push_back(i);
 
     cin >> n;
-   while (n) {
+    while (n) {
         for (auto& i : p) {
             if ((n - i) < i)
                 break;
