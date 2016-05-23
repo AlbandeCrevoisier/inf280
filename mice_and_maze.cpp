@@ -1,7 +1,7 @@
 /* Mice and Maze */
 #include <stdio.h>
-#include <vector>
 #include <map>
+#include <vector>
 #include <algorithm>
 using namespace std;
 
@@ -11,20 +11,24 @@ main(void)
     int c_nb;
 
     scanf("%d", &c_nb);
-    for (int c = 0; c < c_nb; c++) {
+    for (int i = 0; i < c_nb; i++) {
         int n, e, t, m;
-        map<int, int> p;
-        vector<map<int, int>> g;
+        int p[100][2];
+        map<int, int> g[100];
         scanf("%d %d %d %d", &n, &e, &t, &m);
-        for (int i = 0; i < m; i++) {
-            int a, b, l;
-            scanf("%d %d %d", &a, &b, &l);
-            g[b].insert(pair<int, int>(a, -l));
+        for (int j = 0; j < n; j++)
+            p[j][1] = t;
+        for (int j = 0; j < m; j++) {
+            int a, b, c;
+            scanf("%d %d %d", &a, &b, &c);
+            g[b].insert(pair<int, int>(a, -c));
         }
 
         /* reverse Dijkstra-ih */
-        p.insert(pair<int, pair<int, int>>(e, pair<int, int>(e, t));
+        p[e][0] = e;
+        p[e][1] = t;
 
+    printf("%d\n", p[e][1]);
     }
     
 
