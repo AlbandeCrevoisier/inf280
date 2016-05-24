@@ -51,7 +51,7 @@ main(void)
 			int m, l = INT_MIN;
 			for (auto j : p)
 				for (auto k : g[j])
-					if (p.count(k.first) && l < k.second) {
+					if (q.count(k.first) && l < k.second) {
 						m = k.first;
 						l = k.second;
 					}
