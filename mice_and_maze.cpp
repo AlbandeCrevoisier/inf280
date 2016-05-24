@@ -18,6 +18,7 @@ main(void)
 		map<int, int> g[100];
 		
 		scanf("%d %d %d %d", &n, &e, &t, &m);
+		e--;
 		for (int j = 0; j < n; j++)
 			q.push_back(j);
 		for (int j = 0; j < n; j++)
@@ -25,7 +26,8 @@ main(void)
 		for (int j = 0; j < m; j++) {
 			int a, b, c;
 			scanf("%d %d %d", &a, &b, &c);
-			g[b].insert(pair<int, int>(a, -c));
+			/* x-1 because input is from 1..n, but array 0..(n-1) */
+			g[b-1].insert(pair<int, int>(a-1, -c));
 		}
 
 		/* Adapted Dijkstra:
@@ -37,6 +39,12 @@ main(void)
 		w[e][1] = t;
 		p.push_back(e);
 		q.remove(e);
+		for (auto j : g[e])
+			if ((w[e][1] + j.second) > w[j.first][1]) {
+				w[j.first][0] = e;
+				w[j.first][1] = (w[e][1] + j.second);
+			}
+		
 
 		while (!q.empty()) {
 			/* min */
@@ -44,7 +52,9 @@ main(void)
 			list<int>::const_iterator it;
 			for (it = p.begin(); it != p.end(); it++)
 				for (auto k : g[*it])
-					if (binary_search(q.begin(), q.end(), k.first) && l < k.second) {
+					if (binary_search(
+						q.begin(), q.end(), k.first)
+						&& l < k.second) {
 						m = k.first;
 						l = k.second;
 					}
@@ -53,12 +63,11 @@ main(void)
 			q.remove(m);
 
 			/* update weights */
-			for (auto j : g[m]) {
+			for (auto j : g[m])
 				if ((w[m][1] + j.second) > w[j.first][1]) {
 					w[j.first][0] = m;
 					w[j.first][1] = (w[m][1] + j.second);
 				}
-			}
 		}
 		/* count mice */
 		for (int j = 0; j < n; j++)
