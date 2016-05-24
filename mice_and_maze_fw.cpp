@@ -1,4 +1,5 @@
-/* Mice and Maze */ #include <stdio.h>
+/* Mice and Maze */
+#include <stdio.h>
 #include <climits>
 #include <algorithm>
 #define N 101
@@ -18,7 +19,7 @@ main(void)
 				if (i == j)
 					g[i][j] = 0;
 				else
-					g[i][j] = INT_MAX/3;
+					g[i][j] = INT_MAX/2;
 		for (int i = 0; i < m; i++) {
 			int a, b, c;
 			scanf("%d %d %d", &a, &b, &c);
