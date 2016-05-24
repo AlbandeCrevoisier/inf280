@@ -29,6 +29,17 @@ main(void)
 		q.push(a);
 		d[a].first = 0;
 
+		while (!q.empty()) {
+			int v = q.front();
+			q.pop();
+			for (auto w : g[v]) {
+				if (d[w].first == INT_MAX) {
+					d[w].first = d[v].first + 1;
+					d[w].second = v;
+					q.push(w);
+				}
+			}
+		}
 	}
 	return 0;
 }
