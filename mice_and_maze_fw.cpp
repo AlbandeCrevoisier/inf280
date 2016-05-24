@@ -10,7 +10,7 @@ main(void)
 	scanf("%d", &c_nb);
 	for (int c = 0; c < c_nb; c++) {
 		int n, e, t, m, s = 0;
-		int g[100][100];
+		int g[101][101];
 		for (int i = 0; i < 100; i++)
 			for (int j = 0; j < 100; j++)
 				g[i][j] = INT_MAX;
@@ -21,11 +21,11 @@ main(void)
 			g[a][b] = c;
 		}
 		/* Floyd - Warshall */
-		for (int k = 0; k < n; k++)
-			for (int i = 0; i < n; i++)
-				for (int j = 0; j < n; j++)
+		for (int k = 1; k < (n+1); k++)
+			for (int i = 1; i < (n+1); i++)
+				for (int j = 1; j < (n+1); j++)
 					g[i][j] = min(g[i][j], g[i][k] + g[k][j]);
-		for (int i = 0; i < n; i++)
+		for (int i = 1; i < (n+1); i++)
 			if (g[i][e] <= t)
 				s++;
 		printf("%d\n\n", s);
