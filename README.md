@@ -6,5 +6,5 @@ algo
   * Goldbach's conjecture: accepted.
 
 2. Second week
-  * Mice and maze: WIP
+  * Mice and maze: time limit excedeed.
 

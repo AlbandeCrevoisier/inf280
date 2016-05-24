@@ -73,7 +73,7 @@ main(void)
 		for (int j = 0; j < n; j++)
 			if (w[j][1] >= 0)
 				s++;
-		printf("%d\n", s);
+		printf("%d\n\n", s);
 	}
 
 	return 0;
