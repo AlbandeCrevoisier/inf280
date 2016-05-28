@@ -15,8 +15,10 @@ main(void)
 		vector<int[100]> g;
 		vector<pair<int, int>> d;
 		queue<int> q;
-		for (int i = 0; i < n; i++)
+		for (int i = 0; i < n; i++) {
+			g.push_back(int[100]);
 			d.push_back(pair<int, int> (INT_MAX, -1));
+		}
 		scanf("%d", &n);
 		for (int i = 0; i < n; i++) {
 			int m;
@@ -25,6 +27,8 @@ main(void)
 				scanf("%d", &g[i][j]);
 		}
 		scanf("%d %d", &a, &b);
+
+		/* BFS */
 
 		q.push(a);
 		d[a].first = 0;
