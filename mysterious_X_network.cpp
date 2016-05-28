@@ -11,20 +11,22 @@ main(void)
 	int c_nb;
 	scanf("%d", &c_nb);
 	for (int c = 0; c < c_nb; c++) {
-		int n, a, b;
-		vector<int[100]> g;
+		int n, a, b, s;
+		vector<vector<int>> g;
 		vector<pair<int, int>> d;
 		queue<int> q;
-		for (int i = 0; i < n; i++) {
-			g.push_back(int[100]);
+		for (int i = 0; i < n; i++)
 			d.push_back(pair<int, int> (INT_MAX, -1));
-		}
 		scanf("%d", &n);
 		for (int i = 0; i < n; i++) {
 			int m;
+			g.push_back(vector<int>());
 			scanf("%d", &m);
-			for (int j = 0; j < m; j++)
-				scanf("%d", &g[i][j]);
+			for (int j = 0; j < m; j++) {
+				int tmp;
+				scanf("%d", &tmp);
+				g[i].push_back(tmp);
+			}
 		}
 		scanf("%d %d", &a, &b);
 
@@ -44,6 +46,12 @@ main(void)
 				}
 			}
 		}
+		for (auto i : g[a])
+			if (d[i].first == b)
+				s = d[i].second - 1;
+		printf("%d %d %d\n", a, b, s);
+		if (c != c_nb)
+			printf("\n");
 	}
 	return 0;
 }
