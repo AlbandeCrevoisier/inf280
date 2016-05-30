@@ -8,9 +8,9 @@ using namespace std;
 int
 main(void)
 {
-	int c_nb;
-	scanf("%d", &c_nb);
-	for (int c = 0; c < c_nb; c++) {
+	int nb_c;
+	scanf("%d", &nb_c);
+	for (int c = 0; c < nb_c; c++) {
 		int n, a, b;
 		vector<vector<int>> g;
 		vector<pair<int, int>> d;
@@ -32,7 +32,6 @@ main(void)
 		scanf("%d %d", &a, &b);
 
 		/* BFS */
-
 		q.push(a);
 		d[a].first = 0;
 		d[a].second = a;
@@ -49,9 +48,8 @@ main(void)
 			}
 		}
 		printf("%d %d %d\n", a, b, d[b].first - 1);
-		if (c != (c_nb - 1))
+		if (c != (nb_c - 1))
 			printf("\n");
 	}
 	return 0;
 }
-
