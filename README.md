@@ -9,5 +9,5 @@ algo
 	* Mice and maze: accepted.
 
 3. Third week
-	* Mysterious X network: WIP.
-
+	* Mysterious X network: accepted.
+	* Crime: WIP.
