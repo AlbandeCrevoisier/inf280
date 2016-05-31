@@ -10,4 +10,4 @@ algo
 
 3. Third week
 	* Mysterious X network: accepted.
-	* Crime: WIP.
+	* Crime: accepted.

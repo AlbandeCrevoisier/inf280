@@ -9,9 +9,8 @@ main(void)
 {
 	int n, m;
 	while(scanf("%d %d", &n, &m) != EOF) {
-		int s = 0, s1 = 0, s2 = 0;
+		int s = 0;
 		int c[1000] = {0};
-		queue<int> q;
 		vector<vector<int>> g;
 		for (int i = 0; i < n; i++)
 			g.push_back(vector<int> ());
@@ -28,6 +27,8 @@ main(void)
 		for (int i = 0; i < n; i++) {
 			if (c[i] != 0)
 				continue;
+			int s1 = 0, s2 = 0;
+			queue<int> q;
 			vector<int> tmp;
 			tmp.push_back(i);
 			c[i] = 1;
