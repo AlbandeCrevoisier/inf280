@@ -22,29 +22,33 @@ main(void)
 			g[b - 1].push_back(a - 1);
 		}
 
-		/* BFS: color the graph
+		/* BFS: color the connected components of the graph
 		 * colors : 1, 2. Initialised at 0.
 		 */
-		c[1] = 1;
-		q.push(1);
-
-		while (!q.empty()) {
-			int v = q.front();
-			q.pop();
-			for (auto w : g[v]) {
-				if (c[w] == 0) {
-					c[w] = (c[v] == 1 ? 2 : 1);
-					q.push(w);
-				} else if (c[v] + c[w] != 3) {
-					goto err_impossible;
+		for (int i = 0; i < n; i++) {
+			if (c[i] != 0)
+				continue;
+			c[i] = 1;
+			q.push(i);
+	
+			while (!q.empty()) {
+				int v = q.front();
+				q.pop();
+				for (auto w : g[v]) {
+					if (c[w] == 0) {
+						c[w] = (c[v] == 1 ? 2 : 1);
+						q.push(w);
+					} else if (c[v] + c[w] != 3) {
+						goto err_impossible;
+					}
 				}
 			}
-		}
-		for (int i = 0; i < n; i++) {
-			if (c[i] == 1)
-				s1++;
-			else
-				s2++;
+			for (int j = 0; j < n; j++) {
+				if (c[j] == 1)
+					s1++;
+				else
+					s2++;
+			}
 		}
 		printf("%d\n", (s1 > s2) ? s2 : s1);
 		continue;
