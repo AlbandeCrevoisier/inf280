@@ -7,12 +7,12 @@ using namespace std;
 int
 main(void)
 {
-	while(1) {
-		int n, m, s1 = 0, s2 = 0;
+	int n, m;
+	while(scanf("%d %d", &n, &m) != EOF) {
+		int s1 = 0, s2 = 0;
 		int c[1000];
 		queue<int> q;
 		vector<vector<int>> g;
-		scanf("%d %d", &n, &m);
 		for (int i = 0; i < n; i++)
 			g.push_back(vector<int> ());
 		for (int i = 0; i < m; i++) {
@@ -36,7 +36,6 @@ main(void)
 					c[w] = (c[v] == 1 ? 2 : 1);
 					q.push(w);
 				} else if (c[v] + c[w] != 3) {
-					printf("Impossible\n");
 					goto err_impossible;
 				}
 			}
@@ -48,7 +47,9 @@ main(void)
 				s2++;
 		}
 		printf("%d\n", (s1 > s2) ? s2 : s1);
+		continue;
 	err_impossible:
+		printf("Impossible\n");
 	}
 	return 0;
 }
