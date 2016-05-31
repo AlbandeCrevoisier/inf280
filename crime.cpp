@@ -9,8 +9,8 @@ main(void)
 {
 	int n, m;
 	while(scanf("%d %d", &n, &m) != EOF) {
-		int s1 = 0, s2 = 0;
-		int c[1000];
+		int s = 0, s1 = 0, s2 = 0;
+		int c[1000] = {0};
 		queue<int> q;
 		vector<vector<int>> g;
 		for (int i = 0; i < n; i++)
@@ -28,6 +28,8 @@ main(void)
 		for (int i = 0; i < n; i++) {
 			if (c[i] != 0)
 				continue;
+			vector<int> tmp;
+			tmp.push_back(i);
 			c[i] = 1;
 			q.push(i);
 	
@@ -38,19 +40,21 @@ main(void)
 					if (c[w] == 0) {
 						c[w] = (c[v] == 1 ? 2 : 1);
 						q.push(w);
+						tmp.push_back(w);
 					} else if (c[v] + c[w] != 3) {
 						goto err_impossible;
 					}
 				}
 			}
-			for (int j = 0; j < n; j++) {
+			for (auto j : tmp) {
 				if (c[j] == 1)
 					s1++;
 				else
 					s2++;
 			}
+			s += ((s1 > s2) ? s2 : s1);
 		}
-		printf("%d\n", (s1 > s2) ? s2 : s1);
+		printf("%d\n", s);
 		continue;
 	err_impossible:
 		printf("Impossible\n");
