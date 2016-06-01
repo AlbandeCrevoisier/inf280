@@ -26,6 +26,7 @@ main(void)
 
 		while (next_permutation(pr, pr + N) {
 			/* compute volume and put it in s */
+			
 		}
 	}
 	return 0;
