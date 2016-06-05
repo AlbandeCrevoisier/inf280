@@ -3,6 +3,7 @@
 #include <utility>
 #include <algorithm>
 #include <math.h>
+#include <climits>
 #define PI 3.1415926535
 #define N 6
 #define MAX 720 /* N! */
@@ -20,8 +21,8 @@ main(void)
 		int p[N][4]; /* 0-2: position, 3: squared radius */
 		int v[MAX];
 		int pr[N];
-		scanf("%d %d %d", &a[0], &a[1], &a[2]);
-		scanf("%d %d %d", &b[0], &b[1], &b[2]);
+		scanf("%d %d %d", &cube[0][0], &cube[0][1], &cube[0][2]);
+		scanf("%d %d %d", &cube[1][0], &cube[1][1], &cube[1][2]);
 		for (int tmp = 0; tmp < nb_p; tmp++) {
 			int i, j, k;
 			scanf("%d %d %d", &i, &j, &k);
@@ -29,10 +30,10 @@ main(void)
 				((cube[0][0] < i) ^ (cube[1][0] < i)) &&
 				((cube[0][1] < j) ^ (cube[1][1] < j)) &&
 				((cube[0][2] < k) ^ (cube[1][2] < k))) {
-				n++;
 				p[n][0] = i;
 				p[n][1] = j;
 				p[n][2] = k;
+				n++;
 			}
 		}
 		for (int i = 0; i < n; i++)
@@ -42,10 +43,10 @@ main(void)
 		while (next_permutation(pr, pr + n)) {
 			for (int i = 0; i < n; i++) {
 				int d[N + 6];
-				for( int j = 0; j < n; j++) {
+				for ( int j = 0; j < n; j++) {
 					if (i == j)
 						continue;
-					int r = p[pr[i]][3];
+					int r = p[pr[i]][3] * p[pr[i]][3];
 					int d0 = p[pr[i]][0] - p[pr[j]][0];
 					int d1 = p[pr[i]][1] - p[pr[j]][1];
 					int d2 = p[pr[i]][2] - p[pr[j]][2];
@@ -66,13 +67,14 @@ main(void)
 				}
 				for (int j = 0; j < n + 6; j++) {
 					int m = INT_MAX;
-					if (d[j] != 0 && d[j] < m)
+					if (d[j] != 0 && d[j] < m) {
 						m = d[j]
 						/* TODO 
 						 * get the idx of the min
-						  */
-				
-			}
+						 */
+					}
+				}
+			v[idx] += 4 * PI * 
 			idx++;
 		}
 	}
