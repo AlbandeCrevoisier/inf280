@@ -2,34 +2,41 @@
 #include <stdio.h>
 #include <utility>
 #include <algorithm>
-#include <math.h>
+#include <cmath>
 #include <climits>
 #define PI 3.1415926535
 #define N 6
 #define MAX 720 /* N! */
 using namespace std;
 
+/* Hypothesis: the box has sides along the x = 0 hyperplans (and so on). */
 int
 main(void)
 {
-	int nb_p;
-	scanf("%d", &nb_p);
-	while (nb_p != 0) {
+	int c_nb = 1;
+	while (1) {
+		int nb_p;
+		int v_box = 0, v_max = 0;
 		int idx = 0;
 		int n = 0; /* number of points inside of the box */
-		int cube[2][3];
+		int box[2][3];
 		int p[N][4]; /* 0-2: position, 3: squared radius */
 		int v[MAX];
 		int pr[N];
-		scanf("%d %d %d", &cube[0][0], &cube[0][1], &cube[0][2]);
-		scanf("%d %d %d", &cube[1][0], &cube[1][1], &cube[1][2]);
+		scanf("%d", &nb_p);
+		if (nb_p == 0)
+			break;
+		else if (c_nb > 1)
+			printf("\n");
+		scanf("%d %d %d", &box[0][0], &box[0][1], &box[0][2]);
+		scanf("%d %d %d", &box[1][0], &box[1][1], &box[1][2]);
 		for (int tmp = 0; tmp < nb_p; tmp++) {
 			int i, j, k;
 			scanf("%d %d %d", &i, &j, &k);
 			if (
-				((cube[0][0] < i) ^ (cube[1][0] < i)) &&
-				((cube[0][1] < j) ^ (cube[1][1] < j)) &&
-				((cube[0][2] < k) ^ (cube[1][2] < k))) {
+				((box[0][0] < i) ^ (box[1][0] < i)) &&
+				((box[0][1] < j) ^ (box[1][1] < j)) &&
+				((box[0][2] < k) ^ (box[1][2] < k))) {
 				p[n][0] = i;
 				p[n][1] = j;
 				p[n][2] = k;
@@ -57,26 +64,28 @@ main(void)
 						d[j] = d0 + d1 + d2;
 				}
 				for (int j = 0; j < 2; j++) {
-					int d0 = p[pr[i]][0] - cube[j][0];
-					int d1 = p[pr[i]][1] - cube[j][1];
-					int d2 = p[pr[i]][2] - cube[j][2];
-					d0 *= d0;
-					d1 *= d1;
-					d2 *= d2;
-					d[n + j] = d0 + d1 + d2;
+					d[n+3*j] = p[pr[i]][0] - box[j][0];
+					d[n+3*j + 1] = p[pr[i]][1] - box[j][1];
+					d[n+3*j + 2] = p[pr[i]][2] - box[j][2];
 				}
-				for (int j = 0; j < n + 6; j++) {
-					int m = INT_MAX;
-					if (d[j] != 0 && d[j] < m) {
-						m = d[j]
-						/* TODO 
-						 * get the idx of the min
-						 */
-					}
-				}
-			v[idx] += 4 * PI * 
+				for (int j = n; j < n + 6; j++)
+					d[j] *= d[j];
+
+				int m = INT_MAX;
+				for (int j = 0; j < n + 6; j++)
+					if (d[j] != 0 && d[j] < m)
+						m = d[j];
+				v[idx] += (4 * PI * m * sqrt(m) / 3);
+			}
 			idx++;
 		}
+		for (int i = 0; i < MAX; i++)
+			if (v[i] > v_max)
+				v_max = v[i];
+		for (int i = 0; i < 3; i++)
+			v_box *= abs(box[0][i] - box[1][i]);
+
+		printf("Box %d: %d\n", c_nb, v_box - v_max);	
 	}
 	return 0;
 }
