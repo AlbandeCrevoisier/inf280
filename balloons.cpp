@@ -16,12 +16,12 @@ main(void)
 	int c_nb = 1;
 	while (1) {
 		int nb_p;
-		int v_box = 0, v_max = 0;
+		int v_box = 1, v_max = 0;
 		int idx = 0;
 		int n = 0; /* number of points inside of the box */
 		int box[2][3];
 		int p[N][4]; /* 0-2: position, 3: squared radius */
-		int v[MAX];
+		int v[MAX] = {0};
 		int pr[N];
 		scanf("%d", &nb_p);
 		if (nb_p == 0)
@@ -53,15 +53,15 @@ main(void)
 				for ( int j = 0; j < n; j++) {
 					if (i == j)
 						continue;
-					int r = p[pr[i]][3] * p[pr[i]][3];
+					int r = p[pr[j]][3] * p[pr[j]][3];
 					int d0 = p[pr[i]][0] - p[pr[j]][0];
 					int d1 = p[pr[i]][1] - p[pr[j]][1];
 					int d2 = p[pr[i]][2] - p[pr[j]][2];
 					d0 *= d0;
 					d1 *= d1;
 					d2 *= d2;
-					if (d0 + d1 + d2 < r)
-						d[j] = d0 + d1 + d2;
+					if (d0 + d1 + d2 > r)
+						d[j] = d0 + d1 + d2 - r;
 				}
 				for (int j = 0; j < 2; j++) {
 					d[n+3*j] = p[pr[i]][0] - box[j][0];
@@ -75,6 +75,7 @@ main(void)
 				for (int j = 0; j < n + 6; j++)
 					if (d[j] != 0 && d[j] < m)
 						m = d[j];
+				p[pr[i]][3] = m;
 				v[idx] += (4 * PI * m * sqrt(m) / 3);
 			}
 			idx++;
@@ -85,7 +86,7 @@ main(void)
 		for (int i = 0; i < 3; i++)
 			v_box *= abs(box[0][i] - box[1][i]);
 
-		printf("Box %d: %d\n", c_nb, v_box - v_max);	
+		printf("Box %d: %d\n", c_nb++, v_box - v_max);	
 	}
 	return 0;
 }
