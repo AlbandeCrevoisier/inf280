@@ -26,8 +26,6 @@ main(void)
 		scanf("%d", &nb_p);
 		if (nb_p == 0)
 			break;
-		else if (c_nb > 1)
-			printf("\n");
 		scanf("%d %d %d", &box[0][0], &box[0][1], &box[0][2]);
 		scanf("%d %d %d", &box[1][0], &box[1][1], &box[1][2]);
 		for (int tmp = 0; tmp < nb_p; tmp++) {
@@ -86,7 +84,7 @@ main(void)
 		for (int i = 0; i < 3; i++)
 			v_box *= abs(box[0][i] - box[1][i]);
 
-		printf("Box %d: %d\n", c_nb++, v_box - v_max);	
+		printf("Box %d: %d\n\n", c_nb++, v_box - v_max);
 	}
 	return 0;
 }
