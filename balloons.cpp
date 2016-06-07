@@ -47,37 +47,29 @@ main(void)
 		/* compute volume and put it in v[] */
 		while (next_permutation(pr, pr + n)) {
 			for (int i = 0; i < n; i++) {
-				int d[N + 6];
+				int d[N + 6] = {0};
 				for ( int j = 0; j < n; j++) {
 					if (i == j)
 						continue;
-					int r = p[pr[j]][3] * p[pr[j]][3];
+					int r = p[pr[j]][3];
 					int d0 = p[pr[i]][0] - p[pr[j]][0];
 					int d1 = p[pr[i]][1] - p[pr[j]][1];
 					int d2 = p[pr[i]][2] - p[pr[j]][2];
 					d0 *= d0;
 					d1 *= d1;
 					d2 *= d2;
-					if (d0 + d1 + d2 > r) {
-						d[j] = sqrt(d0 + d1 + d2);
-						d[j] -= sqrt(r);
-						d[j] *= d[j];
-					}
+					if (d0 + d1 + d2 > r * r)
+						d[j] = sqrt(d0 + d1 + d2) - r;
 				}
-				for (int j = 0; j < 2; j++) {
-					d[n+3*j] = p[pr[i]][0] - box[j][0];
-					d[n+3*j + 1] = p[pr[i]][1] - box[j][1];
-					d[n+3*j + 2] = p[pr[i]][2] - box[j][2];
-				}
-				for (int j = n; j < n + 6; j++)
-					d[j] *= d[j];
-
+				for (int j = 0; j < 6; j++)
+					d[n + j] = abs(
+						p[pr[i]][j%3] - box[j/3][j%3]);
 				int m = INT_MAX;
 				for (int j = 0; j < n + 6; j++)
 					if (d[j] != 0 && d[j] < m)
 						m = d[j];
 				p[pr[i]][3] = m;
-				v[idx] += (4 * PI * m * sqrt(m) / 3);
+				v[idx] += (4 * PI * m * m * m / 3);
 			}
 			idx++;
 		}
