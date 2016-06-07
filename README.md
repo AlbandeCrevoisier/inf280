@@ -11,3 +11,7 @@ algo
 3. Third week
   * Mysterious X network: accepted.
   * Crime: accepted.
+
+4. Fourth week
+  * Roof: WIP.
+  * Balloons in a box: implementation errors.
