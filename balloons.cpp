@@ -19,10 +19,10 @@ main(void)
 		int v_box = 1, v_max = 0;
 		int idx = 0;
 		int n = 0; /* number of points inside of the box */
-		int box[2][3];
-		int p[N][4]; /* 0-2: position, 3: squared radius */
+		int box[2][3] = {0};
+		int p[N][4] = {0}; /* 0-2: position, 3: squared radius */
 		int v[MAX] = {0};
-		int pr[N];
+		int pr[N] = {0};
 		scanf("%d", &nb_p);
 		if (nb_p == 0)
 			break;
@@ -58,8 +58,11 @@ main(void)
 					d0 *= d0;
 					d1 *= d1;
 					d2 *= d2;
-					if (d0 + d1 + d2 > r)
-						d[j] = d0 + d1 + d2 - r;
+					if (d0 + d1 + d2 > r) {
+						d[j] = sqrt(d0 + d1 + d2);
+						d[j] -= sqrt(r);
+						d[j] *= d[j];
+					}
 				}
 				for (int j = 0; j < 2; j++) {
 					d[n+3*j] = p[pr[i]][0] - box[j][0];
