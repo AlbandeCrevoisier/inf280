@@ -24,13 +24,26 @@ main(void)
 				if (i == j)
 					continue;
 				if (r[i][0] <= r[j][2] && r[j][2] <= r[i][2] &&
-				r[j][2] < r[j][1]) {
-					int turn = (r[i][2] - r[i][0]) * (r[j][3] - r[i][3]) - (r[j][2] -r[i][2]) * (r[i][3] - r[i][1]);
-					
-					w_dep[i].push_back(j);
+				r[j][2] < r[j][0]) {
+					int turn = (r[i][2] - r[i][0]) *
+						(r[j][3] - r[i][3]) -
+						(r[j][2] -r[i][2]) *
+						(r[i][3] - r[i][1]);
+					if (turn > 0)
+						w_dep[i].push_back(j);
+				}
+				if (r[i][0] <= r[j][0] && r[j][0] <= r[i][2] &&
+				r[j][0] < r[j][2]) {
+					int turn = (r[i][2] - r[i][0]) *
+						(r[j][3] - r[i][3]) -
+						(r[j][0] -r[i][2]) *
+						(r[i][3] - r[i][1]);
+					if (turn > 0)
+						w_dep[i].push_back(j);
 				}
 			}
 		}
+		/* Go from left to right and compute where rain falls. */
 	}
 	return 0;
 }
