@@ -22,7 +22,6 @@ main(void)
 			int m;
 			g.push_back(vector<int>());
 			scanf("%d", &m);
-			scanf("%d", &m);
 			for (int j = 0; j < m; j++) {
 				int tmp;
 				scanf("%d", &tmp);
