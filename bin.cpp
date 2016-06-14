@@ -20,12 +20,12 @@ main(void)
 		}
 		sort(v.begin(), v.end());
 		while (!v.empty()) {
-			if (v.front() + v.back() <= l) {
+			if ((v.front() + v.back() <= l) && v.size() > 1) {
 				v.erase(v.begin());
-				v.erase(v.end());
+				v.erase(--v.end());
 				q++;
 			} else {
-				v.erase(v.begin());
+				v.erase(--v.end());
 				q++;
 			}
 		}
