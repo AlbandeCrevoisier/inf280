@@ -24,10 +24,6 @@ main(void)
 	 * brut forcing with find instead.
 	 */
 
-
-	
-
-
 	/* horizontal */
 	for (int i = 0; i < n; i++) {
 		string rline;
@@ -65,19 +61,19 @@ main(void)
 		}
 	}
 	/* diagonal: top left - bottow right */
-	for (int idx = 0, idx < n + m; idx++) {
+	for (int idx = 0; idx < n + m; idx++) {
 		int a, cst_a, b, cst_b, l = 0;
 		string s, rs;
 		a = ((idx / (n - 1)) ? 0 : (n - 1) - idx);
 		b = ((idx / (n - 1)) ? idx - (n - 1) : 0);
 		cst_a = a;
 		cst_b = b;
-		while (a < n && b < m) {
+		while (a < n - 1 && b < m - 1) {
 			s.push_back(g[a++][b++]);
 			l++;
 		}
 		for (int i = 0; i < l; l++)
-			rs.push_back(g[a--][b--];
+			rs.push_back(g[a--][b--]);
 		for (int w = 0; w < k; w++) {
 			int w_size = d[w].size();
 			int found = s.find(d[w]);
@@ -92,5 +88,40 @@ main(void)
 					in_d[a++][b++] = true;
 		}
 	}
+	/* diagonal: top right - bottow left */
+	for (int idx = 0; idx < n + m; idx++) {
+		int a, cst_a, b, cst_b, l = 0;
+		string s, rs;
+		a = ((idx / (m - 1)) ? 0 : idx - (m - 1));
+		b = ((idx / (m - 1)) ? idx : m - 1);
+		cst_a = a;
+		cst_b = b;
+		while (a < n - 1 && b > 0) {
+			s.push_back(g[a++][b--]);
+			l++;
+		}
+		for (int i = 0; i < l; l++)
+			rs.push_back(g[a--][b++]);
+		for (int w = 0; w < k; w++) {
+			int w_size = d[w].size();
+			int found = s.find(d[w]);
+			int rfound = rs.find(d[w]);
+			if (found != -1)
+				for (int i = 0; i < w_size; i++)
+					in_d[a++][b--] = true;
+			a = cst_a;
+			b = cst_b;
+			if (rfound != -1)
+				for (int i = 0; i < w_size; i++)
+					in_d[a++][b--] = true;
+		}
+	}
+
+	/* print the solution */
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < m; j++)
+			if (!in_d[i][j])
+				printf("%c", d[i][j]);
+	printf("\n");
 	return 0;
 }
