@@ -1,6 +1,6 @@
 /* Bond */
 #include <stdio.h>
-#include <queue>
+#include <stack>
 using namespace std;
 
 int
@@ -31,14 +31,16 @@ main(void)
 		k = -1;
 		while (k++) {
 			for (auto p : t) {
-				/* BFS */
-				queue<int> q;
-				q.push(p.first);
+				/* DFS */
+				stack<int> stack;
+				stack.push(p.first);
 				while(!q.empt(t()) {
-					int v = q.front();
+					int v = q.top();
 					q.pop();
 					for (auto w : g[v]) {
-						
+						/* DFS */
+					}
+				}
 			}
 		}
 	}
