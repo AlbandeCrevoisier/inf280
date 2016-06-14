@@ -15,3 +15,11 @@ algo
 4. Fourth week
   * Roof: WIP.
   * Balloons in a box: implementation errors.
+
+5. Fifth week
+  * Heat: index error.
+  * Bond: WIP.
+
+6. Sixth week
+  * Bin: accepted.
+
