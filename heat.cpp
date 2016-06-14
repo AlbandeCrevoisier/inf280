@@ -72,7 +72,7 @@ main(void)
 			s.push_back(g[a++][b++]);
 			l++;
 		}
-		for (int i = 0; i < l; l++)
+		for (int i = 0; i < l; i++)
 			rs.push_back(g[a--][b--]);
 		for (int w = 0; w < k; w++) {
 			int w_size = d[w].size();
@@ -100,7 +100,7 @@ main(void)
 			s.push_back(g[a++][b--]);
 			l++;
 		}
-		for (int i = 0; i < l; l++)
+		for (int i = 0; i < l; i++)
 			rs.push_back(g[a--][b++]);
 		for (int w = 0; w < k; w++) {
 			int w_size = d[w].size();
