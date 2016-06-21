@@ -9,8 +9,8 @@ main(void)
 	int nb_c;
 	scanf("%d", &nb_c);
 	for (int c = 0; c < nb_c; c++) {
-		int n, m, d;
-		vector<int, int> w;
+		int n, m, d = 0;
+		vector<pair<int, int>> w;
 		scanf("%d %d", &n, &m);
 		for (int i = 0; i < m; i++) {
 			int tmp;
@@ -21,8 +21,8 @@ main(void)
 		for (int i = 0; i < (m - n); i++) {
 			int idx_min;
 			int min = w.back().second;
-			for (int j = 0; j < (w.size() - 1); j++) {
-				if (w[j + 1].second - w[j].first) < min) {
+			for (int j = 0; j < (int) (w.size() - 1); j++) {
+				if ((w[j + 1].second - w[j].first) < min) {
 					min = w[j + 1].second - w[j].first;
 					idx_min = j;
 				}
@@ -30,11 +30,10 @@ main(void)
 			w[idx_min].second = w[idx_min + 1].second;
 			w.erase(w.begin() + idx_min + 1);
 		}
-		d = w.back().second;
 		for (auto r : w)
-			if ((r.second - r.first) < d)
+			if ((r.second - r.first) > d)
 				d = r.second - r.first;
-		printf("%f.1", (double) d);
+		printf("%.1f\n", d / 2.0);
 	}
 	return 0;
 }

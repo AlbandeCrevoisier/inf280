@@ -22,4 +22,4 @@ algo
 
 6. Sixth week
   * Bin: accepted.
-  * Wifi: WIP
+  * Wifi: TLE
