@@ -1,6 +1,6 @@
 /* Easy bin */
 #include <stdio.h>
-#include <vector>
+#include <vector> // using a dqueue would have been better
 #include<algorithm>
 using namespace std;
 
