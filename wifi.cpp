@@ -33,7 +33,7 @@ main(void)
 		for (auto r : w)
 			if ((r.second - r.first) > d)
 				d = r.second - r.first;
-		printf("%.1f\n", d / 2.0);
+		printf("%.1f\n",d / 2.0);
 	}
 	return 0;
 }
