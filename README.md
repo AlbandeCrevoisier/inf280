@@ -2,24 +2,24 @@ algo
 ====
 
 1. First week
-  * Lawn Mower: accepted.
-  * Goldbach's conjecture: accepted.
+  - [x] Lawn Mower: accepted.
+  - [x] Goldbach's conjecture: accepted.
 
 2. Second week
-  * Mice and maze: accepted.
+  - [x] Mice and maze: accepted.
 
 3. Third week
-  * Mysterious X network: accepted.
-  * Crime: accepted.
+  - [x]  Mysterious X network: accepted.
+  - [x]  Crime: accepted.
 
 4. Fourth week
-  * Roof: WIP.
-  * Balloons in a box: implementation errors.
+  - [x] Roof: accepted.
+  - [ ] Balloons in a box: implementation errors.
 
 5. Fifth week
-  * Heat: index error.
-  * Bond: WIP.
+  - [x] Heat: accepted.
+  - [x]  Bond: accepted.
 
 6. Sixth week
-  * Bin: accepted.
-  * Wifi: TLE
+  - [x] Bin: accepted.
+  - [ ] Wifi: TLE
